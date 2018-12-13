@@ -33,11 +33,11 @@ def predictions():
 	elif(text == "RANDOM FOREST"):
 		random_forest_results = grid_search.predict(unpickle("../rf_X_test.pkl"))
 		return render_template("results.html", random_forest_results)
-	elif(text == "SGD REGRESSOR"):
+	elif(text == "SGD REGRESSION"):
 		sgd_regressor_results = grid_search.predict(unpickle("../sgd_reg_X_test.pkl"))
 		return render_template("results.html", sgd_regressor_results)
 	else:
-		text = "Not a algorithm that can be processed!"
+		text = "Not an algorithm that can be processed!"
 		return render_template("results.html", text = text)
 		
 if __name__ == "__main__":
