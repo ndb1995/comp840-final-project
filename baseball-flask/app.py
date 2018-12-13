@@ -23,16 +23,14 @@ def predictions():
 	text = request.form['text']
 	text = text.upper()
 	
+	
 	grid_search = joblib.load('../grid_search.pkl')
-	random_forest = joblib.load('../random_forest.pkl')
+	#random_forest = joblib.load('../random_forest.pkl')
 	sgd_regressor = joblib.load('../sgd_regressor.pkl')
 
 	if(text == "GRID SEARCH"):
 		grid_search_results = grid_search.predict(unpickle("../grid_search_X_test.pkl"))
 		return render_template("results.html", grid_search_results)
-	elif(text == "RANDOM FOREST"):
-		random_forest_results = grid_search.predict(unpickle("../rf_X_test.pkl"))
-		return render_template("results.html", random_forest_results)
 	elif(text == "SGD REGRESSION"):
 		sgd_regressor_results = grid_search.predict(unpickle("../sgd_reg_X_test.pkl"))
 		return render_template("results.html", sgd_regressor_results)
@@ -41,6 +39,6 @@ def predictions():
 		return render_template("results.html", text = text)
 		
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=False, port=5000, host='0.0.0.0') 
 	
 	
